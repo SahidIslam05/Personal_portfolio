@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahid Islam | Personal Portfolio</title>
+    <!-- Preload critical fonts to prevent text flashing -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" as="style">
+    
+    <!-- Standard font loading -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Font display optimization -->
+    <style>
+        .font-optimization {
+            font-display: swap;
+        }
+        
+        /* Fix for text analysis results */
+        #basic-stats, #pronouns-stats, #prepositions-stats, #articles-stats {
+            min-height: 50px;
+            padding: 5px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .count {
+            font-weight: 600;
+        }
+    </style>
+    <style>
+        /* Additional animations for achievements and skills */
+        @keyframes float-text {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .skill-item:hover span, 
+        .achievement-card:hover h4 {
+            animation: float-text 2s ease-in-out infinite;
+        }
+        
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 0;
+            transition: all 0.4s ease;
+        }
+        
+        .achievement-card:nth-child(1)::before {
+            background-image: radial-gradient(circle, var(--yellow-color) 1px, transparent 1px);
+        }
+        
+        .achievement-card:nth-child(2)::before {
+            background-image: radial-gradient(circle, var(--chess-color) 1px, transparent 1px);
+        }
+        
+        .achievement-card:nth-child(3)::before {
+            background-image: radial-gradient(circle, var(--math-color) 1px, transparent 1px);
+        }
+        
+        .achievement-card:nth-child(4)::before {
+            background-image: radial-gradient(circle, var(--geo-color) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Boxes -->
+    <div class="decorative-elements">
+        <div class="deco-box purple-box" data-aos="fade-right" data-aos-duration="1200"></div>
+        <div class="deco-box yellow-box" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200"></div>
+        <div class="deco-box brown-box" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300"></div>
+        <div class="deco-logo code-logo" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-code"></i></div>
+        <div class="deco-logo math-logo" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-square-root-alt"></i></div>
+        <div class="deco-logo geo-logo" data-aos="zoom-in" data-aos-delay="600"><i class="fas fa-globe-americas"></i></div>
+        <div class="deco-pattern pattern-1"></div>
+        <div class="deco-pattern pattern-2"></div>
+    </div>
+
+    <!-- Background Elements - Enhanced with more chess pieces -->
+    <div class="bg-elements">
+        <div class="chess-piece" id="knight">♞</div>
+        <div class="chess-piece" id="pawn">♟</div>
+        <div class="chess-piece" id="bishop">♝</div>
+        <div class="chess-piece" id="rook">♜</div>
+        <div class="chess-piece" id="queen">♛</div>
+        <div class="chess-piece" id="king">♚</div>
+        <div class="chess-piece small" id="knight2">♞</div>
+        <div class="chess-piece small" id="pawn2">♟</div>
+        <div class="chess-piece large" id="bishop2">♝</div>
+        <div class="chess-piece large" id="queen2">♛</div>
+        <div class="math-symbol" id="pi">π</div>
+        <div class="math-symbol" id="sigma">∑</div>
+        <div class="math-symbol" id="infinity">∞</div>
+        <div class="math-symbol" id="delta">Δ</div>
+        <div class="geo-marker" id="marker1"></div>
+        <div class="geo-marker" id="marker2"></div>
+        <div class="geo-marker" id="marker3"></div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span>SI</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-item">Home</a></li>
+                    <li><a href="#about" class="nav-item">About</a></li>
+                    <li><a href="#education" class="nav-item">Education</a></li>
+                    <li><a href="#skills" class="nav-item">Skills</a></li>
+                    <li><a href="#hobbies" class="nav-item">Hobbies</a></li>
+                    <li><a href="#text-analyzer" class="nav-item">Text Analyzer</a></li>
+                </ul>
+                <!-- Add theme toggle button -->
+                <div class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="menu-btn">
+                    <div class="menu-btn__burger"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
+                    <h1>Hello, I'm <span class="highlight">Sahid Islam</span></h1>
+                    <p class="subtitle">Student • Chess Enthusiast • Math Lover • GeoGuessr Player</p>
+                    <div class="cta-buttons">
+                        <a href="./assets/cv.pdf" class="btn primary-btn" target="_blank">View CV</a>
+                        <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="profile-img-container">
+                        <img src="./assets/profile.jpg" alt="Sahid Islam" id="profile-picture">
+                        <div class="floating-icon" id="chess-icon">♟️</div>
+                        <div class="floating-icon" id="math-icon">∫</div>
+                        <div class="floating-icon" id="geo-icon">🌍</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Update gallery container attributes with captions -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+                    <p>Hello! I'm a passionate student with a <em>deep interest</em> in mathematics, chess, and geography. I enjoy solving complex problems and exploring logical challenges that push my analytical thinking to new heights. When I'm not studying, you can find me analyzing chess positions, solving mathematical puzzles, or testing my geographical knowledge in GeoGuessr.</p>
+                    <p>I believe in <strong>continuous learning</strong> and applying theoretical knowledge to practical situations. My goal is to combine my technical skills with my problem-solving abilities to make <em>meaningful contributions</em> in my field.</p>
+                </div>
+                <div class="birthplace-gallery" data-aos="fade-left" data-aos-delay="200">
+                    <h3>My Birthplace</h3>
+                    <div class="gallery">
+                        <div class="gallery-img-container" data-caption="Jaldapara National Park">
+                            <img src="./assets/birthplace1.jpg" alt="Birthplace Image 1" class="gallery-img">
+                        </div>
+                        <div class="gallery-img-container" data-caption="Majestic architecture of Rajbari">
+                            <img src="./assets/birthplace2.jpg" alt="Birthplace Image 2" class="gallery-img">
+                        </div>
+                        <div class="gallery-img-container" data-caption="Scenic Beauty">
+                            <img src="./assets/birthplace3.jpg" alt="Birthplace Image 3" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section - Update with more prominent floating elements -->
+    <section id="education" class="section alt-bg">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Education</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <!-- Enhanced floating education symbols with specific colors -->
+            <div class="edu-float-elements">
+                <div class="edu-float" style="top: 15%; left: 10%; --duration: 8s; --distance: -25px; --rotation: 10deg; color: #64f4ac;">🎓</div>
+                <div class="edu-float" style="top: 35%; right: 15%; --duration: 6s; --distance: -20px; --rotation: -5deg; color: #3b82f6;">📚</div>
+                <div class="edu-float" style="bottom: 25%; left: 20%; --duration: 10s; --distance: -30px; --rotation: 8deg; color: #8b5cf6;">🏫</div>
+                <div class="edu-float" style="top: 60%; right: 25%; --duration: 7s; --distance: -22px; --rotation: -12deg; color: #64f4ac;">📝</div>
+                <div class="edu-float" style="bottom: 40%; left: 30%; --duration: 9s; --distance: -28px; --rotation: 15deg; color: #3b82f6;">🖋️</div>
+                <div class="edu-float" style="top: 45%; right: 5%; --duration: 11s; --distance: -20px; --rotation: -10deg; color: #8b5cf6;">📘</div>
+                <div class="edu-float" style="bottom: 10%; left: 7%; --duration: 8.5s; --distance: -25px; --rotation: 5deg; color: #64f4ac;">🔬</div>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Bachelor of Science in Computer Science</h3>
+                        <p class="timeline-place">International Institute of Information Technology, Hyderabad</p>
+                        <p class="timeline-date">2024 - Present</p>
+                        <p>Currently pursuing my degree with a focus on programming and computer fundamentals. </p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>High School Diploma</h3>
+                        <p class="timeline-place">Bairatiguri High School</p>
+                        <p class="timeline-date">2022 - 2024</p>
+                        <p>Graduated with honors. Participated in the Mathematics Olympiad and Chess Club.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Middle School Education</h3>
+                        <p class="timeline-place">St. James' School</p>
+                        <p class="timeline-date">2017 - 2022</p>
+                        <p>Completed 5th to 10th grade.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="achievements">
+                <h3 data-aos="fade-up" data-aos-delay="300">Achievements</h3>
+                <div class="achievements-grid">
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="achievement-icon">🏆</div>
+                        <h4>Qualified INMO 2022, 2O23, 2024</h4>
+                        <p>Recognized for exceptional problem-solving skills in geometry, combinatorics and number theory.</p>
+                    </div>
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="achievement-icon">🏅</div>
+                        <h4>Chess Tournament - 1st Place</h4>
+                        <p>Won school chess championship, demonstrating strategic thinking and foresight.</p>
+                    </div>
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="achievement-icon">📝</div>
+                        <h4>JEE Mains</h4>
+                        <p>Qaulified JEE Mains with rank - 906</p>
+                    </div>
+                    <div class="achievement-card" data-aos="zoom-in" data-aos-delay="700">
+                        <div class="achievement-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/512/5956/5956592.png" alt="Hackathon Icon" class="hackathon-icon">
+                        </div>
+                        <h4>Quirky Prize in HackIIIT</h4>
+                        <p>Won recognition for developing a creative meme generating agent that combines AI with humor.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Courses & Grades Section -->
+            <div class="courses-section">
+                <h3 data-aos="fade-up" data-aos-delay="300">Courses & Grades</h3>
+                <div class="university">International Institute of Information Technology, Hyderabad</div>
+                <div class="courses-container">
+                    <div class="semester-block" data-aos="fade-up" data-aos-delay="400">
+                        <h4>1st Semester</h4>
+                        <ul class="course-list">
+                            <li><span class="course-name">C Programming:</span> <span class="course-grade">9/10</span></li>
+                            <li><span class="course-name">Discrete Structures:</span> <span class="course-grade">10/10</span></li>
+                            <li><span class="course-name">Digital Systems and Microcontrollers:</span> <span class="course-grade">9/10</span></li>
+                            <li><span class="course-name">Real Analysis-1:</span> <span class="course-grade">10/10</span></li>
+                        </ul>
+                    </div>
+                    <div class="semester-block" data-aos="fade-up" data-aos-delay="500">
+                        <h4>2nd Semester</h4>
+                        <ul class="course-list">
+                            <li><span class="course-name">Data Structures and Algorithms:</span> <span class="course-grade">In Progress</span></li>
+                            <li><span class="course-name">Linear Algebra:</span> <span class="course-grade">In Progress</span></li>
+                            <li><span class="course-name">Computer System Organisation:</span> <span class="course-grade">In Progress</span></li>
+                            <li><span class="course-name">Intro to Software Systems:</span> <span class="course-grade">In Progress</span></li>
+                            <li><span class="course-name">Intro to IOT:</span> <span class="course-grade">In Progress</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="skills-container">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Expert Level</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Logo" title="HTML5">
+                                </div>
+                                <div class="skill-info">
+                                    <span>HTML/CSS</span>
+                                    <span>95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Logo" title="JavaScript">
+                                </div>
+                                <div class="skill-info">
+                                    <span>JavaScript</span>
+                                    <span>90%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Proficient Level</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Logo" title="Python">
+                                </div>
+                                <div class="skill-info">
+                                    <span>Python</span>
+                                    <span>80%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java Logo" title="Java">
+                                </div>
+                                <div class="skill-info">
+                                    <span>Java</span>
+                                    <span>75%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy Logo" title="NumPy">
+                                </div>
+                                <div class="skill-info">
+                                    <span>NumPy</span>
+                                    <span>78%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 78%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original-wordmark.svg" alt="Jupyter Logo" title="Jupyter Notebook">
+                                </div>
+                                <div class="skill-info">
+                                    <span>Jupyter Notebook</span>
+                                    <span>82%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 82%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Intermediate Level</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Logo" title="React">
+                                </div>
+                                <div class="skill-info">
+                                    <span>React</span>
+                                    <span>65%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL Logo" title="MySQL">
+                                </div>
+                                <div class="skill-info">
+                                    <span>SQL</span>
+                                    <span>60%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 60%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <div class="logo-item">
+                                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash Logo" title="Bash">
+                                </div>
+                                <div class="skill-info">
+                                    <span>Bash</span>
+                                    <span>55%</span>
+                                </div>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section id="hobbies" class="section alt-bg">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">My Hobbies</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="hobbies-grid">
+                <div class="hobby-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="hobby-icon">♟️</div>
+                    <h3>Chess</h3>
+                    <p>I've been playing chess since I was 8 years old. I enjoy analyzing positions, studying openings, and participating in local tournaments. My current rating is 1800 on chess.com.</p>
+                    <div class="hobby-bg chess-bg"></div>
+                </div>
+                <div class="hobby-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="hobby-icon">🧮</div>
+                    <h3>Mathematics</h3>
+                    <p>I'm fascinated by number theory, calculus, and mathematical puzzles. I regularly participate in math competitions and enjoy solving complex problems in my free time.</p>
+                    <div class="hobby-bg math-bg"></div>
+                </div>
+                <div class="hobby-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="hobby-icon">🌍</div>
+                    <h3>GeoGuessr</h3>
+                    <p>Testing my geographical knowledge through GeoGuessr has become one of my favorite pastimes. I've developed strategies to identify locations based on vegetation, architecture, and road signs.</p>
+                    <div class="hobby-bg geo-bg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Text Analyzer Section -->
+    <section id="text-analyzer" class="section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Text Analyzer</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="analyzer-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="input-section">
+                    <textarea id="text-input" placeholder="Enter text to analyze..." spellcheck="false"></textarea>
+                    <div class="textarea-info">
+                        <span id="char-count">0 characters</span>
+                        <button id="analyze-btn" class="btn primary-btn">Analyze Text</button>
+                    </div>
+                </div>
+                <div class="results-section">
+                    <div class="result-box">
+                        <h4>Basic Statistics</h4>
+                        <div id="basic-stats" class="stats-container"></div>
+                    </div>
+                    <div class="result-box">
+                        <h4>Pronouns</h4>
+                        <div id="pronouns-stats" class="stats-container"></div>
+                    </div>
+                    <div class="result-box">
+                        <h4>Prepositions</h4>
+                        <div id="prepositions-stats" class="stats-container"></div>
+                    </div>
+                    <div class="result-box">
+                        <h4>Indefinite Articles</h4>
+                        <div id="articles-stats" class="stats-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section alt-bg">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>sahidislam660@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>6294842479</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Hyderabad, Telangana</p>
+                    </div>
+                </div>
+                <div class="social-links" data-aos="fade-up" data-aos-delay="300">
+                    <a href="https://github.com/SahidIslam05" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/sahid-islam-71427a2aa/" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sahid Islam. All rights reserved.</p>
+            <p>Created for GitHub Pages</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="scripts.js"></script>
+    <script src="userTracking.js"></script>
+</body>
+</html>
